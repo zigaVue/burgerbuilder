@@ -1,10 +1,10 @@
 import React from 'react';
 
-import Aux from '../../hoc/Aux';
+import Wrapper from '../../hoc/Wrapper';
 import styles from './Layout.css';
 
 const Layout = ( props ) => (
-    <Aux>
+    <Wrapper>
         <div>
             Toolbar,
             SideDrawer, 
@@ -13,7 +13,7 @@ const Layout = ( props ) => (
         <main className={styles.content}>
             {props.children}
         </main>
-    </Aux>
+    </Wrapper>
 );
 
 export default Layout;
