@@ -9,7 +9,7 @@ const toolbar = (props) => (
         <div className={styles.MobileOnly} onClick={props.sideDrawerOpener}>MENU</div>
         <div className={styles.Logo}><Logo /></div>
         <nav className={styles.DesktopOnly}>
-            <NavigationItems />
+            <NavigationItems isAuthenticated={props.isAuthenticated} />
         </nav>
     </header>
 );
