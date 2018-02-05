@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import { connect } from 'react-redux';
+import { Redirect } from 'react-router-dom';
 
 import Input from '../../components/UI/input/Input';
 import Button from '../../components/UI/button/Button';
@@ -8,8 +9,8 @@ import Spinner from '../../components/UI/spinner/Spinner';
 
 import styles from './Auth.css';
 
-import axios from '../../axios-orders';
-import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
+// import axios from '../../axios-orders';
+// import withErrorHandler from '../../hoc/withErrorHandler/withErrorHandler';
 import * as actions from '../../store/actions/index';
 
 class Auth extends Component {
@@ -129,6 +130,12 @@ class Auth extends Component {
                 <p>{this.props.error.message}</p>
             );
         }
+
+        if (this.props.isAuthenticated){
+            let path = (this.props.isBurgerBuilding) ? "/checkout": "/";
+            return (<Redirect to={path} />);
+        }
+            
         
         return (
             <div className={styles.Auth}>
@@ -149,7 +156,9 @@ class Auth extends Component {
 const mapStateToProps = state => {
     return {
         loading: state.auth.loading,
-        error: state.auth.error
+        error: state.auth.error,
+        isAuthenticated: state.auth.token !== null,
+        isBurgerBuilding: state.burgerBuilder.building
     }
 };
 
